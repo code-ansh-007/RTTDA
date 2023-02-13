@@ -49,7 +49,7 @@ const Todo = ({ todo, id }) => {
             onChange={(e) => setEdditedTodo(e.target.value)}
           />
         ) : (
-          <span className="break-all">{todo}</span>
+          <span className="break-normal">{todo}</span>
         )}
 
         {/* tools div */}
