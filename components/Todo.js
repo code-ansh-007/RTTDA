@@ -40,7 +40,7 @@ const Todo = ({ todo, id }) => {
 
   return (
     <>
-      <div className="flex items-center space-x-2 my-2 border-2 justify-between sm:min-w-2xl border-blue-500 p-2 w-full rounded-md">
+      <div className="flex items-center space-x-2 my-2 border-2 justify-between sm:max-w-2xl border-blue-500 p-2 w-full rounded-md">
         {edit ? (
           <input
             ref={inputRef}
