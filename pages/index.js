@@ -15,6 +15,8 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscLoading } from "react-icons/vsc";
+import thinkDog from "../public/images/dog.png";
+import Image from "next/image";
 
 export default function Home() {
   const [todo, setTodo] = useState("");
@@ -39,7 +41,6 @@ export default function Home() {
     } catch (error) {
       console.log("error in adding doc: ", error);
     }
-    setTodo("");
   }
 
   {
@@ -93,6 +94,7 @@ export default function Home() {
           />
           <button
             onClick={() => {
+              setTodo("");
               if (currentUser) {
                 handleToDoAdd();
               } else {
@@ -114,11 +116,15 @@ export default function Home() {
           <div>
             <i className="fa-solid mt-[140px] text-7xl animate-spin text-blue-500 fa-spinner "></i>
           </div>
-        ) : (
-          // <AiOutlineLoading3Quarters className="text-7xl text-blue-500 animate-spin mt-[140px]" />
+        ) : todos.length > 0 ? (
           todos.map((item) => {
             return <Todo key={item.id} todo={item.data().task} id={item.id} />;
           })
+        ) : (
+          <div className="flex flex-col items-center mt-[90px]">
+            <Image src={thinkDog} width={200} />
+            <span className="text-2xl font-semibold">No Todos Yet</span>
+          </div>
         )}
       </main>
     </>
