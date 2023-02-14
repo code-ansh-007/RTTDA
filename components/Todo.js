@@ -40,7 +40,7 @@ const Todo = ({ todo, id }) => {
 
   return (
     <>
-      <div className="flex items-center space-x-2 my-2 border-2 justify-between sm:max-w-2xl border-blue-500 p-2 w-full rounded-md">
+      <div className="flex items-center space-x-2 my-2 border-2 justify-between sm:min-w-2xl border-blue-500 p-2 w-full rounded-md">
         {edit ? (
           <input
             ref={inputRef}
@@ -51,7 +51,12 @@ const Todo = ({ todo, id }) => {
             onChange={(e) => setEdditedTodo(e.target.value)}
           />
         ) : (
-          <span style={{ overflowWrap: "normal", wordBreak: "break-word" }}>
+          <span
+            style={{
+              overflowWrap: "normal",
+              wordBreak: "break-word",
+            }}
+          >
             {todo}
           </span>
         )}
@@ -65,7 +70,16 @@ const Todo = ({ todo, id }) => {
             ></i>
           ) : (
             <i
-              onClick={setWritingCursor}
+              onClick={() => {
+                setEdit(true);
+                // ? setting the writing cursor to the last word of the input tag
+                if (inputRef.current) {
+                  inputRef.current.focus();
+                  inputRef.current.selectionStart =
+                    inputRef.current.value.length;
+                  inputRef.current.selectionEnd = inputRef.current.value.length;
+                }
+              }}
               className="fa-solid fa-pencil duration-200 hover:rotate-45 text-orange-400"
             ></i>
           )}{" "}
