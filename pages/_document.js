@@ -11,7 +11,25 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;1,600&display=swap"
           rel="stylesheet"
         />
-        {/* <link rel="icon" href={favicon} /> */}
+        {/* FAVICON *** Not working right now*/}
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/images/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/images/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/images/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/images/site.webmanifest" />
         {/* FONT AWESOME ICONS CDN IMPORT */}
         <link
           rel="stylesheet"
@@ -21,7 +39,7 @@ export default function Document() {
           referrerPolicy="no-referrer"
         />
       </Head>
-      <body>
+      <body className="scrollbar-thin scrollbar-thumb-blue-500 scrollbar-h-[20px] scrollbar-rounded-md">
         <Main />
         <NextScript />
         <div id="portal"></div>

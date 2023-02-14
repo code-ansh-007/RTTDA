@@ -1,23 +1,20 @@
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import Todo from "../components/Todo";
 import { db } from "../firebase";
 import {
   collection,
   addDoc,
-  doc,
-  setDoc,
-  getDocs,
   serverTimestamp,
   onSnapshot,
   query,
   where,
   orderBy,
-  getDoc,
 } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { VscLoading } from "react-icons/vsc";
 
 export default function Home() {
   const [todo, setTodo] = useState("");
@@ -25,12 +22,7 @@ export default function Home() {
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
-  function generateId() {
-    return (
-      Date.now().toString(36) + Math.random().toString(36).substring(2, 15)
-    );
-  }
+  const [todoLoading, setTodoLoading] = useState(false);
 
   async function handleToDoAdd() {
     setLoading(true);
@@ -53,6 +45,7 @@ export default function Home() {
   {
     currentUser &&
       useEffect(() => {
+        setTodoLoading(true);
         const unsubscribe = onSnapshot(
           query(
             collection(db, "todos"),
@@ -61,6 +54,7 @@ export default function Home() {
           ),
           (snapshot) => {
             setTodos(snapshot.docs);
+            setTodoLoading(false);
           }
         );
         return unsubscribe; // ? clean up function
@@ -111,10 +105,21 @@ export default function Home() {
             Add
           </button>
         </div>
+        {/* <div>
+          <i class="fa-solid fa-spinner"></i>
+        </div> */}
+
         {/* TODOS DIV */}
-        {todos.map((item) => {
-          return <Todo key={item.id} todo={item.data().task} id={item.id} />;
-        })}
+        {todoLoading ? (
+          <div>
+            <i className="fa-solid mt-[140px] text-7xl animate-spin text-blue-500 fa-spinner "></i>
+          </div>
+        ) : (
+          // <AiOutlineLoading3Quarters className="text-7xl text-blue-500 animate-spin mt-[140px]" />
+          todos.map((item) => {
+            return <Todo key={item.id} todo={item.data().task} id={item.id} />;
+          })
+        )}
       </main>
     </>
   );
