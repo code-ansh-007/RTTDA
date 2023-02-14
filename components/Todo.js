@@ -49,7 +49,9 @@ const Todo = ({ todo, id }) => {
             onChange={(e) => setEdditedTodo(e.target.value)}
           />
         ) : (
-          <span className="break-normal">{todo}</span>
+          <span style={{ overflowWrap: "normal", wordBreak: "break-word" }}>
+            {todo}
+          </span>
         )}
 
         {/* tools div */}

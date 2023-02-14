@@ -11,6 +11,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;1,600&display=swap"
           rel="stylesheet"
         />
+        {/* <link rel="icon" href={favicon} /> */}
         {/* FONT AWESOME ICONS CDN IMPORT */}
         <link
           rel="stylesheet"
