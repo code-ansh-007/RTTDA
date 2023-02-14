@@ -10,11 +10,13 @@ const Todo = ({ todo, id }) => {
   function setWritingCursor() {
     setEdit(true);
     // ? setting the writing cursor to the last word of the input tag
-    if (inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.selectionStart = inputRef.current.value.length;
-      inputRef.current.selectionEnd = inputRef.current.value.length;
-    }
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+        inputRef.current.selectionStart = inputRef.current.value.length;
+        inputRef.current.selectionEnd = inputRef.current.value.length;
+      }
+    }, 0); // add a delay of 1 second
   }
 
   async function editTodo() {
@@ -70,16 +72,7 @@ const Todo = ({ todo, id }) => {
             ></i>
           ) : (
             <i
-              onClick={() => {
-                setEdit(true);
-                // ? setting the writing cursor to the last word of the input tag
-                if (inputRef.current) {
-                  inputRef.current.focus();
-                  inputRef.current.selectionStart =
-                    inputRef.current.value.length;
-                  inputRef.current.selectionEnd = inputRef.current.value.length;
-                }
-              }}
+              onClick={setWritingCursor}
               className="fa-solid fa-pencil duration-200 hover:rotate-45 text-orange-400"
             ></i>
           )}{" "}
