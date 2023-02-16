@@ -25,7 +25,6 @@ const Todo = ({ todo, id }) => {
       doc(db, "todos", id),
       {
         task: edittedTodo,
-        timestamp: serverTimestamp(),
       },
       { merge: true }
     );
