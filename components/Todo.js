@@ -46,6 +46,7 @@ const Todo = ({ todo, id }) => {
         {edit ? (
           <input
             ref={inputRef}
+            spellCheck={false}
             type="text"
             id="edit-input"
             value={edittedTodo}
